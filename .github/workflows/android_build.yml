@@ -24,7 +24,14 @@ jobs:
           accept-android-sdk-licenses: true
           packages: 'platforms;android-33 build-tools;33.0.0 ndk;25.2.9519653 cmake;3.22.1'
 
-      - name: Find gradlew location
+      - name: Build APK with Gradle
         run: |
-          echo "Searching for gradlew in the repository..."
-          find . -name "gradlew"
+          cd android-project
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TheXTech-Lua-APK
+          path: android-project/app/build/outputs/apk/debug/*.apk
