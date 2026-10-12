@@ -13,7 +13,7 @@ jobs:
           submodules: recursive
 
       - name: Set up Java / JDK
-        uses: actions/setup-java@v4
+        uses: android/actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -30,7 +30,8 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
-      - name: Find actual APK path
-        run: |
-          echo "Searching for built APK files..."
-          find . -name "*.apk"
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TheXTech-Lua-APK
+          path: android-project/thextech/build/outputs/apk/**/*.apk
