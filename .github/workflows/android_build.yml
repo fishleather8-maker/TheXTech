@@ -18,6 +18,8 @@ jobs:
 
       - name: Setup Android SDK & NDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-license: true
 
       - name: Build APK with Gradle
         run: |
