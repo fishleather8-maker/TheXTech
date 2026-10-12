@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Set up Java / JDK
         uses: actions/setup-java@v4
@@ -20,7 +22,7 @@ jobs:
         uses: android-actions/setup-android@v3
         with:
           accept-android-sdk-licenses: true
-          packages: 'platform-tools'
+          packages: 'platforms;android-33 build-tools;33.0.0 ndk;25.2.9519653 cmake;3.22.1'
 
       - name: Build APK with Gradle
         run: |
